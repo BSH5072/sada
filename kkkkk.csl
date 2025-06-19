@@ -1,0 +1,253 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" default-locale="en-US" version="1.0" demote-non-dropping-particle="never">
+  <!-- This style was edited with the Visual CSL Editor (https://editor.citationstyles.org/visualEditor/) -->
+  <info>
+    <title>FSOB</title>
+    <id>http://www.zotero.org/styles/fsob</id>
+    <link href="http://www.zotero.org/styles/fsob" rel="self"/>
+    <link href="http://www.springer.com/cda/content/document/cda_downloaddocument/instruct-authors-e.pdf" rel="documentation"/>
+    <link href="http://www.springer.com/cda/content/document/cda_downloaddocument/manuscript-guidelines-1.0.pdf" rel="documentation"/>
+    <link href="http://www.springer.com/cda/content/document/cda_downloaddocument/Key_Style_Points_1.0.pdf" rel="documentation"/>
+    <author>
+      <name>Jens Allmer</name>
+      <email>jens@allmer.de</email>
+      <uri>http://jens.allmer.de</uri>
+    </author>
+    <contributor>
+      <name>Sebastian Karcher</name>
+    </contributor>
+    <category citation-format="author-date"/>
+    <category field="generic-base"/>
+    <summary>Springer Author Date Style for the disciplines Medicine, Biomedicine, Life Sciences, Chemistry, Geosciences, Computer Science, Engineering, Economics. This style is based on Harvard style and recommendations of the Council of Biology Editors.</summary>
+    <updated>2025-06-19T20:09:56+00:00</updated>
+    <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
+  </info>
+
+  <locale>
+    <terms>
+      <term name="and others">et al</term>
+      <term name="et-al">et al.</term>
+      <term name="edition" form="short">edn.</term>
+    </terms>
+  </locale>
+
+  <!-- Author formatting (full name, etc.) -->
+  <macro name="author">
+    <names variable="author">
+      <name form="long" and="text"/> <!-- 저자 이름을 풀네임으로 -->
+      <et-al term="and others"/>
+      <substitute>
+        <names variable="editor"/>
+        <names variable="translator"/>
+      </substitute>
+    </names>
+  </macro>
+  
+  <!-- Special case: Full journal names for certain abbreviations -->
+  <macro name="container-title-full">
+    <choose>
+      <!-- Curr Nutr Rep -> Current Nutrition Reports -->
+      <if variable="container-title" match="Curr Nutr Rep">
+        <text term="Current Nutrition Reports"/>
+      </if>
+      <!-- Trends Mol Med -> Trends in Molecular Medicine -->
+      <else-if variable="container-title" match="Trends Mol Med">
+        <text term="Trends in Molecular Medicine"/>
+      </else-if>
+      <!-- Ageing Res Rev -> Ageing Research Reviews -->
+      <else-if variable="container-title" match="Ageing Res Rev">
+        <text term="Ageing Research Reviews"/>
+      </else-if>
+      <!-- Free Rod. Res. Comms -> Free Radical Research Communications -->
+      <else-if variable="container-title" match="Free Rod. Res. Comms">
+        <text term="Free Radical Research Communications"/>
+      </else-if>
+      <!-- Process Biochemistry -> Process Biochemistry -->
+      <else-if variable="container-title" match="Process Biochemistry">
+        <text term="Process Biochemistry"/>
+      </else-if>
+      <!-- Nat Commun -> Nature Communications -->
+      <else-if variable="container-title" match="Nat Commun">
+        <text term="Nature Communications"/>
+      </else-if>
+      <!-- Cold Spring Harb Perspect Biol -> Cold Spring Harbor Perspectives in Biology -->
+      <else-if variable="container-title" match="Cold Spring Harb Perspect Biol">
+        <text term="Cold Spring Harbor Perspectives in Biology"/>
+      </else-if>
+      <!-- Int J Mol Sci -> International Journal of Molecular Sciences -->
+      <else-if variable="container-title" match="Int J Mol Sci">
+        <text term="International Journal of Molecular Sciences"/>
+      </else-if>
+      <!-- Annu Rev Pharmacol Toxicol -> Annual Review of Pharmacology and Toxicology -->
+      <else-if variable="container-title" match="Annu Rev Pharmacol Toxicol">
+        <text term="Annual Review of Pharmacology and Toxicology"/>
+      </else-if>
+      <!-- Food Chem -> Food Chemistry -->
+      <else-if variable="container-title" match="Food Chem">
+        <text term="Food Chemistry"/>
+      </else-if>
+      <!-- Int J Food Sci Technol -> International Journal of Food Science and Technology -->
+      <else-if variable="container-title" match="Int J Food Sci Technol">
+        <text term="International Journal of Food Science and Technology"/>
+      </else-if>
+      <!-- J Nutr Sci Vitaminol -> Journal of Nutritional Science and Vitaminology -->
+      <else-if variable="container-title" match="J Nutr Sci Vitaminol">
+        <text term="Journal of Nutritional Science and Vitaminology"/>
+      </else-if>
+      <!-- Cell -> Cell -->
+      <else-if variable="container-title" match="Cell">
+        <text term="Cell"/>
+      </else-if>
+      <!-- Acta Dermatovenerol Alp Pannonica Adriat -> Acta Dermatovenerologica Alpina, Pannonica et Adriatica -->
+      <else-if variable="container-title" match="Acta Dermatovenerol Alp Pannonica Adriat">
+        <text term="Acta Dermatovenerologica Alpina, Pannonica et Adriatica"/>
+      </else-if>
+      <!-- Biomolecules -> Biomolecules -->
+      <else-if variable="container-title" match="Biomolecules">
+        <text term="Biomolecules"/>
+      </else-if>
+      <!-- Nutrients -> Nutrients -->
+      <else-if variable="container-title" match="Nutrients">
+        <text term="Nutrients"/>
+      </else-if>
+      <!-- J Environ Sci Health B -> Journal of Environmental Science and Health - Part B Pesticides, Food Contaminants, and Agricultural Wastes -->
+      <else-if variable="container-title" match="J Environ Sci Health B">
+        <text term="Journal of Environmental Science and Health - Part B Pesticides, Food Contaminants, and Agricultural Wastes"/>
+      </else-if>
+      <!-- Molecules -> Molecules -->
+      <else-if variable="container-title" match="Molecules">
+        <text term="Molecules"/>
+      </else-if>
+      <!-- Compr Rev Food Sci Food Saf -> Comprehensive Reviews in Food Science and Food Safety -->
+      <else-if variable="container-title" match="Compr Rev Food Sci Food Saf">
+        <text term="Comprehensive Reviews in Food Science and Food Safety"/>
+      </else-if>
+      <!-- Default: Just print the container title -->
+      <else>
+        <text variable="container-title"/>
+      </else>
+    </choose>
+  </macro>
+
+  <!-- Citation formatting -->
+  <citation et-al-min="3" et-al-use-first="1" disambiguate-add-year-suffix="true" collapse="year-suffix" cite-group-delimiter=", ">
+    <sort>
+      <key variable="author" sort="ascending"/>
+      <key variable="issued" sort="ascending"/>
+    </sort>
+    <layout prefix="(" suffix=")" delimiter="; ">
+      <group delimiter=", ">
+        <group delimiter=" ">
+          <text macro="author"/>
+          <text macro="year"/>
+        </group>
+        <group delimiter=" ">
+          <label variable="locator" form="short"/>
+          <text variable="locator"/>
+        </group>
+      </group>
+    </layout>
+  </citation>
+
+  <!-- Bibliography formatting -->
+  <bibliography et-al-min="5" et-al-use-first="3" hanging-indent="true">
+    <sort>
+      <key variable="author" sort="ascending"/>
+      <key variable="issued" sort="ascending"/>
+    </sort>
+    <layout>
+      <group delimiter=" ">
+        <text macro="author"/>
+        <text macro="year-parenth"/>
+        <text macro="title"/>
+        <!-- Add DOI if available -->
+        <choose>
+          <if variable="DOI">
+            <text prefix=" DOI: " variable="DOI"/>
+          </if>
+        </choose>
+      </group>
+      <choose>
+        <if type="chapter paper-conference" match="any">
+          <group delimiter=" " prefix=". ">
+            <text term="in" text-case="capitalize-first" suffix=":"/>
+            <names variable="editor">
+              <name sort-separator=" " initialize-with="" name-as-sort-order="all" delimiter=", " delimiter-precedes-last="always"/>
+              <label form="short" strip-periods="true" prefix=" (" suffix=")"/>
+            </names>
+            <group delimiter=", ">
+              <text macro="container-title-full"/>
+              <text macro="edition"/>
+            </group>
+          </group>
+          <group prefix=". " delimiter=", ">
+            <text variable="publisher"/>
+            <text variable="publisher-place"/>
+            <group delimiter=" ">
+              <label variable="page" form="short" strip-periods="true"/>
+              <text variable="page"/>
+            </group>
+          </group>
+        </if>
+        <else-if type="article-journal">
+          <choose>
+            <if variable="page volume" match="any">
+              <group prefix=". " delimiter=". ">
+                <group delimiter=" ">
+                  <text macro="container-title-full"/>
+                  <group delimiter=":">
+                    <text variable="volume" suffix=":"/>
+                    <text variable="page"/>
+                  </group>
+                </group>
+                <text prefix="Available from: " variable="URL"/>
+                <date variable="accessed">
+                  <date-part prefix="Accessed " name="day" suffix=" "/>
+                  <date-part name="month" form="short" suffix=" " strip-periods="true"/>
+                  <date-part name="year"/>
+                </date>
+              </group>
+            </if>
+            <else>
+              <group prefix=". " delimiter=". ">
+                <text macro="container-title-full"/>
+                <text prefix="Available from: " variable="URL"/>
+                <date variable="accessed">
+                  <date-part prefix="Accessed " name="day" suffix=" "/>
+                  <date-part name="month" form="short" suffix=" " strip-periods="true"/>
+                  <date-part name="year"/>
+                </date>
+              </group>
+            </else>
+          </choose>
+        </else-if>
+        <else-if type="webpage post-weblog post" match="any">
+          <group prefix=". " delimiter=". ">
+            <text prefix="In: " variable="container-title" form="short"/>
+            <text variable="URL"/>
+            <date variable="accessed">
+              <date-part prefix="Accessed " name="day" suffix=" "/>
+              <date-part name="month" form="short" suffix=" " strip-periods="true"/>
+              <date-part name="year"/>
+            </date>
+          </group>
+        </else-if>
+        <else-if type="thesis">
+          <group prefix=". " delimiter=", ">
+            <text variable="genre" text-case="capitalize-first"/>
+            <text variable="publisher"/>
+          </group>
+        </else-if>
+        <else>
+          <group prefix=". " delimiter=" ">
+            <text macro="container-title-full"/>
+            <group delimiter=":">
+              <text variable="volume"/>
+              <text variable="page"/>
+            </group>
+          </group>
+        </else>
+      </choose>
+    </layout>
+  </bibliography>
+</style>

@@ -29,20 +29,10 @@
       <term name="edition" form="short">edn.</term>
     </terms>
   </locale>
-  <macro name="author-short">
-    <names variable="author">
-      <name form="short" and="text"/>
-      <et-al/>
-      <substitute>
-        <names variable="editor"/>
-        <names variable="translator"/>
-      </substitute>
-    </names>
-  </macro>
+
   <macro name="author">
     <names variable="author">
-      <name sort-separator=" " initialize-with="" name-as-sort-order="all" delimiter=", " delimiter-precedes-last="always"/>
-      <label form="short" strip-periods="true" prefix=" (" suffix=")"/>
+      <name form="long" and="text"/> <!-- 저널 제목을 풀네임으로 -->
       <et-al term="and others"/>
       <substitute>
         <names variable="editor"/>
@@ -50,58 +40,16 @@
       </substitute>
     </names>
   </macro>
-  <macro name="edition">
-    <choose>
-      <if is-numeric="edition">
-        <group delimiter=" ">
-          <number variable="edition" form="ordinal"/>
-          <text term="edition" form="short"/>
-        </group>
-      </if>
-      <else>
-        <text variable="edition"/>
-      </else>
-    </choose>
-  </macro>
-  <macro name="year">
-    <date variable="issued">
-      <date-part name="year"/>
-    </date>
-  </macro>
-  <macro name="title">
-    <choose>
-      <if type="book">
-        <group delimiter=". ">
-          <group delimiter=", ">
-            <text variable="title"/>
-            <text macro="edition"/>
-          </group>
-          <choose>
-            <if type="book" match="any" variable="version">
-              <text variable="version" prefix="Version "/>
-            </if>
-          </choose>
-        </group>
-      </if>
-      <else>
-        <text variable="title"/>
-      </else>
-    </choose>
-  </macro>
-  <macro name="year-parenth">
-    <date prefix="(" suffix=")" variable="issued">
-      <date-part name="year"/>
-    </date>
-  </macro>
+  
   <citation et-al-min="3" et-al-use-first="1" disambiguate-add-year-suffix="true" collapse="year-suffix" cite-group-delimiter=", ">
     <sort>
-      <key variable="issued"/>
-      <key macro="author"/>
+      <key variable="author" sort="ascending"/> <!-- 저자 이름으로 알파벳 순 정렬 -->
+      <key variable="issued" sort="ascending"/> <!-- 발행 연도 순으로 정렬 -->
     </sort>
     <layout prefix="(" suffix=")" delimiter="; ">
       <group delimiter=", ">
         <group delimiter=" ">
-          <text macro="author-short"/>
+          <text macro="author"/>
           <text macro="year"/>
         </group>
         <group delimiter=" ">
@@ -111,10 +59,11 @@
       </group>
     </layout>
   </citation>
+
   <bibliography et-al-min="5" et-al-use-first="3" hanging-indent="true">
     <sort>
-      <key macro="author"/>
-      <key variable="author" sort="ascending"/>
+      <key variable="author" sort="ascending"/> <!-- 저자 이름으로 알파벳 순 정렬 -->
+      <key variable="issued" sort="ascending"/> <!-- 발행 연도 순으로 정렬 -->
     </sort>
     <layout>
       <group delimiter=" ">
@@ -131,7 +80,7 @@
               <label form="short" strip-periods="true" prefix=" (" suffix=")"/>
             </names>
             <group delimiter=", ">
-              <text variable="container-title"/>
+              <text variable="container-title" form="long"/> <!-- 저널 제목을 풀네임으로 -->
               <text macro="edition"/>
             </group>
           </group>
@@ -149,7 +98,7 @@
             <if variable="page volume" match="any">
               <group prefix=". " delimiter=". ">
                 <group delimiter=" ">
-                  <text variable="container-title" form="short" strip-periods="true"/>
+                  <text variable="container-title" form="long" strip-periods="true"/> <!-- 저널 제목을 풀네임으로 -->
                   <group delimiter=":">
                     <text variable="volume" suffix=":"/>
                     <text variable="page"/>
@@ -165,7 +114,7 @@
             </if>
             <else>
               <group prefix=". " delimiter=". ">
-                <text variable="container-title" form="short" strip-periods="true"/>
+                <text variable="container-title" form="long" strip-periods="true"/> <!-- 저널 제목을 풀네임으로 -->
                 <text prefix="Available from: " variable="URL"/>
                 <date variable="accessed">
                   <date-part prefix="Accessed " name="day" suffix=" "/>
@@ -175,21 +124,6 @@
               </group>
             </else>
           </choose>
-        </else-if>
-        <else-if type="bill book graphic legal_case legislation motion_picture report song" match="any">
-          <group delimiter=". ">
-            <group prefix=". " delimiter=", ">
-              <text variable="publisher"/>
-              <text variable="publisher-place"/>
-            </group>
-            <group>
-              <choose>
-                <if match="any" variable="version">
-                  <text variable="URL" prefix="URL "/>
-                </if>
-              </choose>
-            </group>
-          </group>
         </else-if>
         <else-if type="webpage post-weblog post" match="any">
           <group prefix=". " delimiter=". ">
@@ -210,7 +144,7 @@
         </else-if>
         <else>
           <group prefix=". " delimiter=" ">
-            <text variable="container-title" form="short"/>
+            <text variable="container-title" form="long"/> <!-- 저널 제목을 풀네임으로 -->
             <group delimiter=":">
               <text variable="volume"/>
               <text variable="page"/>

@@ -22,6 +22,7 @@
     <updated>2025-06-19T20:09:56+00:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
+
   <locale>
     <terms>
       <term name="and others">et al</term>
@@ -30,9 +31,10 @@
     </terms>
   </locale>
 
+  <!-- Author formatting (full name, etc.) -->
   <macro name="author">
     <names variable="author">
-      <name form="long" and="text"/>
+      <name form="long" and="text"/> <!-- 저자 이름을 풀네임으로 -->
       <et-al term="and others"/>
       <substitute>
         <names variable="editor"/>
@@ -41,23 +43,93 @@
     </names>
   </macro>
 
+  <!-- Special case: Full journal names for certain abbreviations -->
   <macro name="container-title-full">
     <choose>
-      <!-- Example: Special condition for 'Curr Nutr Rep' to be replaced with 'Current Nutrition Reports' -->
+      <!-- Curr Nutr Rep -> Current Nutrition Reports -->
       <if variable="container-title" match="Curr Nutr Rep">
         <text term="Current Nutrition Reports"/>
       </if>
-      <!-- Special condition for 'Trends Mol Med' to be replaced with 'Trends in Molecular Medicine' -->
+      <!-- Trends Mol Med -> Trends in Molecular Medicine -->
       <else-if variable="container-title" match="Trends Mol Med">
         <text term="Trends in Molecular Medicine"/>
       </else-if>
-      <!-- More conditions for other journal abbreviations -->
+      <!-- Ageing Res Rev -> Ageing Research Reviews -->
+      <else-if variable="container-title" match="Ageing Res Rev">
+        <text term="Ageing Research Reviews"/>
+      </else-if>
+      <!-- Free Rod. Res. Comms -> Free Radical Research Communications -->
+      <else-if variable="container-title" match="Free Rod. Res. Comms">
+        <text term="Free Radical Research Communications"/>
+      </else-if>
+      <!-- Process Biochemistry -> Process Biochemistry -->
+      <else-if variable="container-title" match="Process Biochemistry">
+        <text term="Process Biochemistry"/>
+      </else-if>
+      <!-- Nat Commun -> Nature Communications -->
+      <else-if variable="container-title" match="Nat Commun">
+        <text term="Nature Communications"/>
+      </else-if>
+      <!-- Cold Spring Harb Perspect Biol -> Cold Spring Harbor Perspectives in Biology -->
+      <else-if variable="container-title" match="Cold Spring Harb Perspect Biol">
+        <text term="Cold Spring Harbor Perspectives in Biology"/>
+      </else-if>
+      <!-- Int J Mol Sci -> International Journal of Molecular Sciences -->
+      <else-if variable="container-title" match="Int J Mol Sci">
+        <text term="International Journal of Molecular Sciences"/>
+      </else-if>
+      <!-- Annu Rev Pharmacol Toxicol -> Annual Review of Pharmacology and Toxicology -->
+      <else-if variable="container-title" match="Annu Rev Pharmacol Toxicol">
+        <text term="Annual Review of Pharmacology and Toxicology"/>
+      </else-if>
+      <!-- Food Chem -> Food Chemistry -->
+      <else-if variable="container-title" match="Food Chem">
+        <text term="Food Chemistry"/>
+      </else-if>
+      <!-- Int J Food Sci Technol -> International Journal of Food Science and Technology -->
+      <else-if variable="container-title" match="Int J Food Sci Technol">
+        <text term="International Journal of Food Science and Technology"/>
+      </else-if>
+      <!-- J Nutr Sci Vitaminol -> Journal of Nutritional Science and Vitaminology -->
+      <else-if variable="container-title" match="J Nutr Sci Vitaminol">
+        <text term="Journal of Nutritional Science and Vitaminology"/>
+      </else-if>
+      <!-- Cell -> Cell -->
+      <else-if variable="container-title" match="Cell">
+        <text term="Cell"/>
+      </else-if>
+      <!-- Acta Dermatovenerol Alp Pannonica Adriat -> Acta Dermatovenerologica Alpina, Pannonica et Adriatica -->
+      <else-if variable="container-title" match="Acta Dermatovenerol Alp Pannonica Adriat">
+        <text term="Acta Dermatovenerologica Alpina, Pannonica et Adriatica"/>
+      </else-if>
+      <!-- Biomolecules -> Biomolecules -->
+      <else-if variable="container-title" match="Biomolecules">
+        <text term="Biomolecules"/>
+      </else-if>
+      <!-- Nutrients -> Nutrients -->
+      <else-if variable="container-title" match="Nutrients">
+        <text term="Nutrients"/>
+      </else-if>
+      <!-- J Environ Sci Health B -> Journal of Environmental Science and Health - Part B Pesticides, Food Contaminants, and Agricultural Wastes -->
+      <else-if variable="container-title" match="J Environ Sci Health B">
+        <text term="Journal of Environmental Science and Health - Part B Pesticides, Food Contaminants, and Agricultural Wastes"/>
+      </else-if>
+      <!-- Molecules -> Molecules -->
+      <else-if variable="container-title" match="Molecules">
+        <text term="Molecules"/>
+      </else-if>
+      <!-- Compr Rev Food Sci Food Saf -> Comprehensive Reviews in Food Science and Food Safety -->
+      <else-if variable="container-title" match="Compr Rev Food Sci Food Saf">
+        <text term="Comprehensive Reviews in Food Science and Food Safety"/>
+      </else-if>
+      <!-- Default: Just print the container title -->
       <else>
         <text variable="container-title"/>
       </else>
     </choose>
   </macro>
 
+  <!-- Citation formatting -->
   <citation et-al-min="3" et-al-use-first="1" disambiguate-add-year-suffix="true" collapse="year-suffix" cite-group-delimiter=", ">
     <sort>
       <key variable="author" sort="ascending"/>
@@ -77,6 +149,7 @@
     </layout>
   </citation>
 
+  <!-- Bibliography formatting -->
   <bibliography et-al-min="5" et-al-use-first="3" hanging-indent="true">
     <sort>
       <key variable="author" sort="ascending"/>
@@ -97,7 +170,7 @@
               <label form="short" strip-periods="true" prefix=" (" suffix=")"/>
             </names>
             <group delimiter=", ">
-              <text macro="container-title-full"/> <!-- 풀네임으로 표시 -->
+              <text macro="container-title-full"/>
               <text macro="edition"/>
             </group>
           </group>
@@ -115,7 +188,7 @@
             <if variable="page volume" match="any">
               <group prefix=". " delimiter=". ">
                 <group delimiter=" ">
-                  <text macro="container-title-full"/> <!-- 풀네임으로 표시 -->
+                  <text macro="container-title-full"/>
                   <group delimiter=":">
                     <text variable="volume" suffix=":"/>
                     <text variable="page"/>
@@ -131,7 +204,7 @@
             </if>
             <else>
               <group prefix=". " delimiter=". ">
-                <text macro="container-title-full"/> <!-- 풀네임으로 표시 -->
+                <text macro="container-title-full"/>
                 <text prefix="Available from: " variable="URL"/>
                 <date variable="accessed">
                   <date-part prefix="Accessed " name="day" suffix=" "/>
@@ -161,7 +234,7 @@
         </else-if>
         <else>
           <group prefix=". " delimiter=" ">
-            <text macro="container-title-full"/> <!-- 풀네임으로 표시 -->
+            <text macro="container-title-full"/>
             <group delimiter=":">
               <text variable="volume"/>
               <text variable="page"/>

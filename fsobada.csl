@@ -42,7 +42,7 @@
       </substitute>
     </names>
   </macro>
-
+  
   <!-- Special case: Full journal names for certain abbreviations -->
   <macro name="container-title-full">
     <choose>
@@ -160,6 +160,12 @@
         <text macro="author"/>
         <text macro="year-parenth"/>
         <text macro="title"/>
+        <!-- Add DOI if available -->
+        <choose>
+          <if variable="DOI">
+            <text prefix=" DOI: " variable="DOI"/>
+          </if>
+        </choose>
       </group>
       <choose>
         <if type="chapter paper-conference" match="any">
